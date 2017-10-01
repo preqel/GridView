@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <!-- ViewPager每个GridView 的Item的布局 -->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_gravity="right"
+            android:id="@+id/id_iv_close"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/white" />
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_gv_item_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/tv_gv_item_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+        <!-- 横线 -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+    </LinearLayout>
+
+    <!-- 竖线 -->
+
+    <!--<View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black" /> -->
+
+</LinearLayout>
