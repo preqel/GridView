@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
+<menus
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <menu   name="menu1"   title="@string/conbanktitle"></menu>
-    <menu   name="menu2"   title="@string/bankhelptitle"></menu>
-    <menu   name="menu3"   title="@string/aboutbanktitle"></menu>
-    <menu   name="menu4"   title="false" android:title="推送"></menu>
-    <menu  name="menu5"    title="退出"></menu>
-</menu>
+    <menu>
+    <name>菜单1</name>
+    <title>caidan1</title>
+    </menu>
+    <menu>
+        <name>菜单2</name>
+        <title>caidan2</title>
+    </menu>
+    <menu>
+        <name>菜单3</name>
+        <title>caidan3</title>
+    </menu>
+    <menu>
+        <name>菜单4</name>
+        <title>caidan4</title>
+    </menu>
+</menus>
