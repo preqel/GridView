@@ -1,6 +1,5 @@
 package one.preqel.com.gridviewfavorite;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import one.preqel.com.ui.Menu;

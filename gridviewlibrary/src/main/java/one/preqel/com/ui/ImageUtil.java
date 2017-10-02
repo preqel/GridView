@@ -1,14 +1,13 @@
-package one.preqel.com.util;
+package one.preqel.com.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import java.lang.reflect.Field;
 
-import one.preqel.com.gridviewfavorite.R;
+import gridview.preqel.com.gridviewlibrary.R;
 
 
 /**

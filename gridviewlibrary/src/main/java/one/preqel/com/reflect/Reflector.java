@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import one.preqel.com.gridviewfavorite.MyApplication;
-import one.preqel.com.gridviewfavorite.SecondActivity;
 
 /**
  * Created by Administrator on 2017/1/12.
@@ -47,8 +45,8 @@ public class Reflector {
 
     public void go(Context mContext)
     {
-        Intent i = new Intent(mContext, SecondActivity.class);
-        ((Activity)mContext).startActivity(i);
+//        Intent i = new Intent(mContext, SecondActivity.class);
+//        ((Activity)mContext).startActivity(i);
     }
 
 

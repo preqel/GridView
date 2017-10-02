@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import one.preqel.com.gridviewfavorite.DataManager;
-import one.preqel.com.gridviewfavorite.R;
-import one.preqel.com.util.ImageUtil;
+import gridview.preqel.com.gridviewlibrary.R;
+import one.preqel.com.ui.ImageUtil;
 
 /**
  * Created by  wangkang on 2017/1/9.

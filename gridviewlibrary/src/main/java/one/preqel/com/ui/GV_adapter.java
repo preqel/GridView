@@ -1,10 +1,8 @@
 package one.preqel.com.ui;
 
 import android.support.v4.view.PagerAdapter;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 import java.util.List;

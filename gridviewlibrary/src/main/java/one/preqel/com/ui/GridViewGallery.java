@@ -16,10 +16,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import one.preqel.com.gridviewfavorite.CustMenu;
+import gridview.preqel.com.gridviewlibrary.R;
 import one.preqel.com.gridviewfavorite.DataManager;
-import one.preqel.com.gridviewfavorite.R;
-import one.preqel.com.reflect.Reflector;
 
 /**
  * GridViewGallery是一个我的菜单组件，可以根据xml里面配置的菜单，来生产九宫格菜单。

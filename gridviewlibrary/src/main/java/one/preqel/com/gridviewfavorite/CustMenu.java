@@ -1,40 +1,25 @@
 /******************************************************************
- 系统名称: 恒生电子手机银行3.0
- 类  名  称: FlowMenu.java
- 软件版权: 恒生电子股份有限公司
- 系统版本: 1.0
- 开发人员: xisc
- 开发时间: 2014-8-26
- 功能说明:
- 加载custMenu.xml
- 审核人员:
- 相关文档:
- 修改记录: 需求编号         修改日期         修改人员           修改说明
-
+ 菜单管理类CustMenu
+ 加载和管理菜单
  ******************************************************************/
 package one.preqel.com.gridviewfavorite;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import android.content.Context;
 import android.util.Log;
 
 import org.w3c.dom.Document;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import gridview.preqel.com.gridviewlibrary.R;
 import one.preqel.com.parse.Parser;
 import one.preqel.com.parse.ParserFactory;
-import one.preqel.com.parse.PullParser;
-import one.preqel.com.parse.SaxParser;
 import one.preqel.com.ui.Menu;
 
-/*
-/  菜单管理类CustMenu
-   加载和管理菜单
-   by wangkang
- */
+
 public class CustMenu {
 
     private static final String CUST_MENU_NAME = "file:///custmenu.xml";
