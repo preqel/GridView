@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/connect" android:icon="@drawable/tellus" android:title="@string/conbanktitle"></item>
-    <item android:id="@+id/help" android:icon="@drawable/question" android:title="@string/bankhelptitle"></item>
-    <item android:id="@+id/about" android:icon="@drawable/version" android:title="@string/aboutbanktitle"></item>
-    <item android:id="@+id/push" android:icon="@drawable/push" android:visible="false" android:title="推送"></item>
-    <item android:id="@+id/off" android:icon="@drawable/quit"  android:title="退出"></item>
+    <item android:id="@+id/connect" name="menu1" android:icon="@drawable/tellus" android:title="@string/conbanktitle"></item>
+    <item android:id="@+id/help" name="menu2" android:icon="@drawable/question" android:title="@string/bankhelptitle"></item>
+    <item android:id="@+id/about" name="menu3" android:icon="@drawable/version" android:title="@string/aboutbanktitle"></item>
+    <item android:id="@+id/push" name="menu4" android:icon="@drawable/push" android:visible="false" android:title="推送"></item>
+    <item android:id="@+id/off" name="menu5" android:icon="@drawable/quit"  android:title="退出"></item>
 </menu>
