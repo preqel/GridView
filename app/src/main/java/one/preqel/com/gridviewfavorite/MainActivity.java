@@ -11,6 +11,7 @@ import gridview.preqel.com.gridviewlibrary.CustomUtil;
     底层的原理，就是利用java反射技术把xml里面的东西反射到对应的点击事件
     作者：wangkang
     时间：20171003
+    ok
  */
 public class MainActivity extends AppCompatActivity {
 

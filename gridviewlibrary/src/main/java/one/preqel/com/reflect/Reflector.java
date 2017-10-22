@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 
 /**
- * Created by Administrator on 2017/1/12.
+ * Created by wangkang on 2017/1/12.
  */
 public class Reflector {
 
