@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import one.preqel.com.gridviewfavorite.DataManager;
 import gridview.preqel.com.gridviewlibrary.R;
@@ -32,10 +33,10 @@ public class GV_Itemadapter extends BaseAdapter {
     HashMap<String, Drawable> hashMap = new HashMap<
             String, Drawable>();
 
-    public GV_Itemadapter(Context mcontext, int index, int pageitemcount) {
+    public GV_Itemadapter(Context mcontext, int index, int pageitemcount, ArrayList<Menu> menus) {
         this.mContext = mcontext;
         this.index = index;
-        this.list = DataManager.getInstance().getData();
+        this.list = menus;
         this.totalsize = this.list.size();
         this.pageitemcount = pageitemcount;
 

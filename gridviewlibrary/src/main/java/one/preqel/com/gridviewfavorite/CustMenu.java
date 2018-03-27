@@ -49,8 +49,6 @@ public class CustMenu {
     public static final int FOUND_MARKET_ID = 0006;
     public static final int WESDK_ID = 22 ;
 
-
-
     protected CustMenu(InputStream inputStream) {
         this.mContext  = MyApplication.getApplication();
         this.inputStream = inputStream;
@@ -71,12 +69,12 @@ public class CustMenu {
      * 加载配置文件
      */
     public void load() throws  Exception{
-
-        Parser saxparser = ParserFactory.getParser("pull");  //如果想用pullparser ，则传入 pull ； 如果用sax解析，则传入pull；也可以自定义解析器。
+        Parser saxparser = ParserFactory.getParser("sax");  //如果想用pullparser ，则传入 pull ； 如果用sax解析，则传入pull；也可以自定义解析器。
         List<Menu> menus = saxparser.parse(inputStream);
         for (Menu a : menus) {
             Log.d("TAG", a.getName());
         }
+
         this.bizList = menus;
     }
 

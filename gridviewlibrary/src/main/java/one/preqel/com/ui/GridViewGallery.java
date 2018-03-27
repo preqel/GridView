@@ -46,18 +46,11 @@ public class GridViewGallery  extends LinearLayout{
 
     public GV_Itemadapter gvadapter1,gvadapter2,gvadapter3;
 
-    private List<Menu> lists;
+    private List<Menu> lists;  //菜单
 
     private int currenindex;   //目前所选tab项
 
-    public void initDate  (InputStream inputStream) throws Exception {
-        CustMenu custMenu = CustMenu.getInstance(inputStream);
-        custMenu.load();
-        lists = (ArrayList) custMenu.getBizList();
-        gvadapter1.notifyDataSetChanged();
-        gvadapter2.notifyDataSetChanged();
-        gvadapter3.notifyDataSetChanged();
-    }
+
 
 
     public GridViewGallery(Context context){
@@ -76,13 +69,13 @@ public class GridViewGallery  extends LinearLayout{
         super(context, attrs);
         this.mcontext = context;
         initView();
-        //addClassifyItem();
     }
 
     public void initView(){
         this.list_views = new ArrayList<GridView>();
         View view  = LayoutInflater.from(mcontext).inflate(R.layout.gallery_layout,null);
 //        this.datamanager = DataManager.getInstance();
+        if(list_views == null || list_views.size() <= 0) return;
         this.viewpagersize = lists.size()/pageitemcount + 1;
 //        if(datamanager.getData() != null){
 //            this.viewpagersize = datamanager.getData().size()/ pageitemcount +1;
@@ -113,6 +106,18 @@ public class GridViewGallery  extends LinearLayout{
         addView(view);
     }
 
+    //调用此方法在activity的oncreate里面
+    public void initDate  (InputStream inputStream) throws Exception {
+        CustMenu custMenu = CustMenu.getInstance(inputStream);
+        custMenu.load();
+        lists = (ArrayList) custMenu.getBizList();
+
+        initView();
+        gvadapter1.notifyDataSetChanged();
+        gvadapter2.notifyDataSetChanged();
+        gvadapter3.notifyDataSetChanged();
+    }
+
     //根据布局xml来加载
     @Deprecated
     private void addClassifyItem() {
@@ -128,7 +133,7 @@ public class GridViewGallery  extends LinearLayout{
     public GridView getViewPagerItem(int index ){
         View view =  LayoutInflater.from(mcontext).inflate( R.layout.gridview_layout,null);
         GridView gridview = (GridView)view.findViewById(R.id.gridView);
-        GV_Itemadapter gvadapter = new GV_Itemadapter(mcontext,index,pageitemcount);
+        GV_Itemadapter gvadapter = new GV_Itemadapter(mcontext,index,pageitemcount,(ArrayList<Menu>) lists);
         if (index == 0) {
             if (gvadapter1 != null) {
                 gvadapter1.notifyDataSetInvalidated();

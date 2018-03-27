@@ -5,6 +5,7 @@
     tools:context=".MainActivity">
 
     <one.preqel.com.ui.GridViewGallery
+        android:id="@+id/gridviewgallery"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     </one.preqel.com.ui.GridViewGallery>
