@@ -18,25 +18,26 @@ import gridview.preqel.com.gridviewlibrary.R;
 import one.preqel.com.ui.ImageUtil;
 
 /**
+ * 适配器类
  * Created by  wangkang on 2017/1/9.
  */
-public class GV_Itemadapter extends BaseAdapter{
+public class GV_Itemadapter extends BaseAdapter {
 
     private Context mContext;
     private int index;
     private ArrayList<Menu> list;
-    private int totalsize ;    //总的数量
+    private int totalsize;    //总的数量
     private int pageitemcount; //每页菜单显示数量
 
-    HashMap<String,Drawable > hashMap = new HashMap<
-            String,Drawable>();
-    public GV_Itemadapter(Context mcontext,int index ,int pageitemcount) {
+    HashMap<String, Drawable> hashMap = new HashMap<
+            String, Drawable>();
+
+    public GV_Itemadapter(Context mcontext, int index, int pageitemcount) {
         this.mContext = mcontext;
-        this.index= index;
+        this.index = index;
         this.list = DataManager.getInstance().getData();
         this.totalsize = this.list.size();
         this.pageitemcount = pageitemcount;
-
 
         //通过内存的方式加载图片  方式1
         hashMap.put("我的账户", mContext.getResources().getDrawable(R.drawable.grid_icon_wdzh));
@@ -58,10 +59,6 @@ public class GV_Itemadapter extends BaseAdapter{
         hashMap.put("提前还款", mContext.getResources().getDrawable(R.drawable.grid_icon_tqhk));
         hashMap.put("自定义添加", mContext.getResources().getDrawable(R.drawable.grid_icon_add));
         hashMap.put("资金归集", mContext.getResources().getDrawable(R.drawable.grid_icon_zzgj));
-
-        //通过retrofit的方式加载图片  方式2
-
-
     }
 
     @Override
@@ -81,11 +78,11 @@ public class GV_Itemadapter extends BaseAdapter{
 
     @Override
     public long getItemId(int position) {
-        return position+ index * pageitemcount;
+        return position + index * pageitemcount;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewholder = new ViewHolder();
         if (convertView == null) {
@@ -98,14 +95,13 @@ public class GV_Itemadapter extends BaseAdapter{
         } else {
             viewholder = (ViewHolder) convertView.getTag();
         }
-        Menu m = list.get(position + index * pageitemcount);
-        viewholder.tv_name.setText(m.getName());
-        if(m.getImage()== null || "".equals(m.getImage())){
+        Menu menuitem = list.get(position + index * pageitemcount);
+        viewholder.tv_name.setText(menuitem.getName());
+        if (menuitem.getImage() == null || "".equals(menuitem.getImage())) {
             viewholder.iv_icon.setImageDrawable(hashMap.get(list.get(position + index * pageitemcount).getName()));
-        }else{
-            viewholder.iv_icon.setImageDrawable(ImageUtil.getBitmap(convertView.getContext(),m.getImage()));
+        } else {
+            viewholder.iv_icon.setImageDrawable(ImageUtil.getBitmap(convertView.getContext(), menuitem.getImage()));
         }
-
         return convertView;
     }
 

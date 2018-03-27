@@ -3,26 +3,30 @@ package one.preqel.com.ui;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import android.widget.TextView;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
 import gridview.preqel.com.gridviewlibrary.R;
+import one.preqel.com.gridviewfavorite.CustMenu;
 import one.preqel.com.gridviewfavorite.DataManager;
 
 /**
- * GridViewGallery是一个我的菜单组件，可以根据xml里面配置的菜单，来生产九宫格菜单。
+ *
+ * GridViewGallery是一个我的菜单组件，
+ * 可以根据xml里面配置的菜单，
+ * 来生产九宫格菜单。
  * 支持点击事件都是可以配置的。
  * Created by wangkang on 2017/1/9.
+ *
  */
 public class GridViewGallery  extends LinearLayout{
 
@@ -46,6 +50,15 @@ public class GridViewGallery  extends LinearLayout{
 
     private int currenindex;   //目前所选tab项
 
+    public void initDate  (InputStream inputStream) throws Exception {
+        CustMenu custMenu = CustMenu.getInstance(inputStream);
+        custMenu.load();
+        lists = (ArrayList) custMenu.getBizList();
+        gvadapter1.notifyDataSetChanged();
+        gvadapter2.notifyDataSetChanged();
+        gvadapter3.notifyDataSetChanged();
+    }
+
 
     public GridViewGallery(Context context){
         super(context);
@@ -57,22 +70,23 @@ public class GridViewGallery  extends LinearLayout{
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
 //        }
-
     }
 
     public GridViewGallery(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mcontext = context;
         initView();
+        //addClassifyItem();
     }
 
     public void initView(){
         this.list_views = new ArrayList<GridView>();
         View view  = LayoutInflater.from(mcontext).inflate(R.layout.gallery_layout,null);
-        this.datamanager = DataManager.getInstance();
-        if(datamanager.getData() != null){
-            this.viewpagersize = datamanager.getData().size()/ pageitemcount +1;
-        }
+//        this.datamanager = DataManager.getInstance();
+        this.viewpagersize = lists.size()/pageitemcount + 1;
+//        if(datamanager.getData() != null){
+//            this.viewpagersize = datamanager.getData().size()/ pageitemcount +1;
+//        }
         for(int i=0;i<viewpagersize;i++){
             GridView gridview = getViewPagerItem(i);
             list_views.add(gridview);
@@ -97,6 +111,18 @@ public class GridViewGallery  extends LinearLayout{
             }
         });
         addView(view);
+    }
+
+    //根据布局xml来加载
+    @Deprecated
+    private void addClassifyItem() {
+        int count = getChildCount();
+        for(int i=0;i<count;i++){
+            View view = getChildAt(i);
+            if(view instanceof TextView){
+
+            }
+        }
     }
 
     public GridView getViewPagerItem(int index ){
@@ -131,13 +157,11 @@ public class GridViewGallery  extends LinearLayout{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Menu menu = datamanager.getData().get(position + currenindex * pageitemcount);
-                Log.d("TAG", "pre:" + menu.getUrl() + "currentinde:" + currenindex);
-
+//                Log.d("TAG", "pre:" + menu.getUrl() + "currentinde:" + currenindex);
                 try {
                      Class<?> re = Class.forName("one.preqel.com.reflect.Reflector");
 //                    Method m1 = re.getDeclaredMethod("regesterContext", Context.class);
 //                    m1.invoke(re.newInstance(),mcontext);
-
                     for(Method m : re.getMethods()){
                       if(m.getName().equals(menu.getUrl()))
                           try {

@@ -1,8 +1,12 @@
 package one.preqel.com.gridviewfavorite;
 
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import gridview.preqel.com.gridviewlibrary.CustomUtil;
 
@@ -19,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        InputStream inputStream = getResources().openRawResource(R.raw.menus);
         try {
-            CustMenu.getInstance().load();
+            CustMenu.getInstance(inputStream).load();
         } catch (Exception e) {
             e.printStackTrace();
         }

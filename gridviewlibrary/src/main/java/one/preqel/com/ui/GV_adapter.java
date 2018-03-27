@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created by  wangkang on 2017/1/9.
  */
-public class GV_adapter extends PagerAdapter{
+public class GV_adapter extends PagerAdapter {
 
-    private List<GridView> lists ;
+    private List<GridView> lists;
 
     public GV_adapter(List<GridView> lists) {
         this.lists = lists;
@@ -32,7 +32,7 @@ public class GV_adapter extends PagerAdapter{
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ViewGroup parent = (ViewGroup) lists.get(position).getParent();
-        if(parent != null){
+        if (parent != null) {
             parent.removeView(lists.get(position));
         }
         container.addView(lists.get(position));
@@ -41,7 +41,7 @@ public class GV_adapter extends PagerAdapter{
 
     @Override
     public void destroyItem(View container, int position, Object object) {
-        ( (ViewGroup)container).removeView(lists.get(position));
+        ((ViewGroup) container).removeView(lists.get(position));
 
     }
 }

@@ -1,5 +1,6 @@
 package one.preqel.com.gridviewfavorite;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import one.preqel.com.ui.Menu;
@@ -17,13 +18,17 @@ public class DataManager {
     private int TYPE  = XML_DATE;  //  如果是0 则表示测试 如果是 1 则表示xml获取
     private static DataManager instance;
     private ArrayList<Menu>  menus = new ArrayList<Menu>();
+    private InputStream inputStream;
 
-
-    public static DataManager getInstance(){  //单例模型
+    public static DataManager getInstance(InputStream inputStream){  //单例模型
           if(instance == null){
-            instance = new DataManager();
+             instance = new DataManager(inputStream);
           }
           return instance;
+    }
+
+    public DataManager(InputStream inputStream){
+        this.inputStream = inputStream;
     }
 
 
@@ -40,9 +45,9 @@ public class DataManager {
             menus.add(new Menu(91, "菜单9", "www.ba5idu.com"));
         }else if(TYPE == XML_DATE ){
             try {
-                  CustMenu.getInstance().load();
-                  menus =  (ArrayList) CustMenu.getInstance().getBizList();
-
+                CustMenu custMenu = CustMenu.getInstance(inputStream);
+                custMenu.load();
+                menus = (ArrayList) custMenu.getBizList();
             } catch (Exception e) {
                 e.printStackTrace();
             }

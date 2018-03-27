@@ -41,6 +41,7 @@ public class CustMenu {
     private List<Menu> bizList = new ArrayList<Menu>();
 
     private static CustMenu mCustMenu;
+    private InputStream inputStream;
 
     public static final int ACCOUNT_MANAGE_ID = 0001;
     public static final int REMIT_ID = 0002;
@@ -48,13 +49,16 @@ public class CustMenu {
     public static final int FOUND_MARKET_ID = 0006;
     public static final int WESDK_ID = 22 ;
 
-    protected CustMenu() {
+
+
+    protected CustMenu(InputStream inputStream) {
         this.mContext  = MyApplication.getApplication();
+        this.inputStream = inputStream;
     }
 
-    public static CustMenu getInstance(){
+    public static CustMenu getInstance(InputStream inputStream){
         if (mCustMenu == null) {
-            mCustMenu = new CustMenu();
+            mCustMenu = new CustMenu(inputStream);
         }
         return mCustMenu;
     }
@@ -67,9 +71,9 @@ public class CustMenu {
      * 加载配置文件
      */
     public void load() throws  Exception{
-        InputStream in = mContext.getResources().openRawResource(R.raw.menus);
+
         Parser saxparser = ParserFactory.getParser("pull");  //如果想用pullparser ，则传入 pull ； 如果用sax解析，则传入pull；也可以自定义解析器。
-        List<Menu> menus = saxparser.parse(in);
+        List<Menu> menus = saxparser.parse(inputStream);
         for (Menu a : menus) {
             Log.d("TAG", a.getName());
         }
