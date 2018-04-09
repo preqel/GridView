@@ -2,11 +2,9 @@ package one.preqel.com.gridviewfavorite;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import gridview.preqel.com.gridviewlibrary.CustomUtil;
@@ -21,8 +19,8 @@ import one.preqel.com.ui.GridViewGallery;
  */
 public class MainActivity extends AppCompatActivity {
 
-
     private GridViewGallery gridViewGallery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,21 +28,22 @@ public class MainActivity extends AppCompatActivity {
         Context context = MainActivity.this;
         InputStream inputStream = context.getResources().openRawResource(R.raw.menus);
         gridViewGallery = (GridViewGallery) findViewById(R.id.gridviewgallery);
-        try {
-            gridViewGallery.initDate(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-                InputStream inputStream2 = getResources().openRawResource(R.raw.menus);
+//        try {
+//            gridViewGallery.initDate(inputStream);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        //test
+        InputStream inputStream2 = getResources().openRawResource(R.raw.menus);
         try {
             CustMenu.getInstance(inputStream2).load();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int a = CustMenu.getInstance(inputStream2).getBizList().size();
-
+        //gridViewGallery.initDate( CustMenu.getInstance(inputStream2).getBizList());
         Log.d("TAG","preqel：" + CustomUtil.getMyHello());
-
-
     }
+
+
 }
