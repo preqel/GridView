@@ -18,17 +18,16 @@ public class DataManager {
     private int TYPE  = XML_DATE;  //  如果是0 则表示测试 如果是 1 则表示xml获取
     private static DataManager instance;
     private ArrayList<Menu>  menus = new ArrayList<Menu>();
-    private InputStream inputStream;
 
-    public static DataManager getInstance(InputStream inputStream){  //单例模型
-          if(instance == null){
-             instance = new DataManager(inputStream);
-          }
-          return instance;
+
+    public static DataManager getInstance() {  //单例模型
+        if (instance == null) {
+            instance = new DataManager();
+        }
+        return instance;
     }
 
-    public DataManager(InputStream inputStream){
-        this.inputStream = inputStream;
+    public DataManager() {
     }
 
 
@@ -45,7 +44,7 @@ public class DataManager {
             menus.add(new Menu(91, "菜单9", "www.ba5idu.com"));
         }else if(TYPE == XML_DATE ){
             try {
-                CustMenu custMenu = CustMenu.getInstance(inputStream);
+                CustMenu custMenu = CustMenu.getInstance( );
                 custMenu.load();
                 menus = (ArrayList) custMenu.getBizList();
             } catch (Exception e) {

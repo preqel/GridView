@@ -49,23 +49,10 @@ public class GridViewGallery extends LinearLayout {
 
     private int currenindex;   //目前所选tab项
 
-
     public GridViewGallery(Context context) {
         super(context);
         mcontext = context;
         initView();
-//        try {
-//            Class<?> re = Class.forName("one.preqel.com.reflect.Reflector");
-//            Method m = re.getDeclaredMethod("")
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        addClassifyItem();
     }
 
     public GridViewGallery(Context context, AttributeSet attrs) {
@@ -76,12 +63,15 @@ public class GridViewGallery extends LinearLayout {
 
     public void initView() {
         View view = LayoutInflater.from(mcontext).inflate(R.layout.gallery_layout, null);
-//        this.datamanager = DataManager.getInstance();
-        if (list_views == null || list_views.size() <= 0) return;
-        this.viewpagersize = lists.size() / pageitemcount + 1;
-
-        Log.d("TAG", "initView" + lists.size() + "is the view's size");
-        list_views.clear();
+        this.datamanager = DataManager.getInstance();
+//        if (list_views == null || list_views.size() <= 0) return;
+//        this.viewpagersize = lists.size() / pageitemcount + 1;
+        if(datamanager.getData()!= null ){
+            this.viewpagersize = datamanager.getData().size()/ pageitemcount +1;
+        }else if(list_views != null && list_views.size() > 0) {
+            this.viewpagersize = lists.size() / pageitemcount + 1;
+        }
+        lists = datamanager.getData();
         for (int i = 0; i < viewpagersize; i++) {
             GridView gridview = getViewPagerItem(i);
             list_views.add(gridview);
@@ -109,8 +99,9 @@ public class GridViewGallery extends LinearLayout {
     }
 
     //调用此方法在activity的oncreate里面
+    @Deprecated
     public void initDate(InputStream inputStream) throws Exception {
-        CustMenu custMenu = CustMenu.getInstance(inputStream);
+        CustMenu custMenu = CustMenu.getInstance( );
         custMenu.load();
         lists = (ArrayList) custMenu.getBizList();
 

@@ -26,24 +26,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Context context = MainActivity.this;
-        InputStream inputStream = context.getResources().openRawResource(R.raw.menus);
+       //InputStream inputStream = context.getResources().openRawResource(R.raw.menus);
         gridViewGallery = (GridViewGallery) findViewById(R.id.gridviewgallery);
-//        try {
 //            gridViewGallery.initDate(inputStream);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
         //test
         InputStream inputStream2 = getResources().openRawResource(R.raw.menus);
         try {
-            CustMenu.getInstance(inputStream2).load();
+            CustMenu.getInstance( ).load();
         } catch (Exception e) {
             e.printStackTrace();
         }
         //gridViewGallery.initDate( CustMenu.getInstance(inputStream2).getBizList());
         Log.d("TAG","preqel：" + CustomUtil.getMyHello());
     }
-
 
 }
