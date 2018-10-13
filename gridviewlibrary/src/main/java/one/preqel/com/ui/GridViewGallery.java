@@ -21,10 +21,16 @@ import one.preqel.com.gridviewfavorite.CustMenu;
 import one.preqel.com.gridviewfavorite.DataManager;
 
 /**
- * GridViewGallery是一个我的菜单组件，
- * 可以根据xml里面配置的菜单，
- * 来生产九宫格菜单。
- * 支持点击事件都是可以配置的。
+ * GridViewGallery是一个自定义的GrdView组件，
+ * 可以根据meus.xml里面配置的信息，来配置九宫格菜单
+ * 点击事件路由都是可以简单配置的。
+ * 如果想增加新的菜单，需要在menus.xml里面增加
+ * <menu>
+ * <name>转账</name>   //表示
+ * <title>caidan2</title>
+ * <img>grid_icon_add.png</img>
+ * </menu>
+ * 目前支持的最大菜单数量是24个
  * Created by wangkang on 2017/1/9.
  */
 public class GridViewGallery extends LinearLayout {
@@ -39,7 +45,7 @@ public class GridViewGallery extends LinearLayout {
 
     private int viewpagersize;
 
-    private final int pageitemcount = 8;
+    private final int pageitemcount = 8;   //每个gridiew里面有的菜单数
 
     private DataManager datamanager;
 
@@ -78,23 +84,6 @@ public class GridViewGallery extends LinearLayout {
         }
         viewpager = (ViewPager) view.findViewById(R.id.viewpager);
         viewpager.setAdapter(new GV_adapter(list_views));
-        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {    //adapter适配器
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                currenindex = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         addView(view);
     }
 
@@ -104,7 +93,6 @@ public class GridViewGallery extends LinearLayout {
         CustMenu custMenu = CustMenu.getInstance( );
         custMenu.load();
         lists = (ArrayList) custMenu.getBizList();
-
         initView();
         if(gvadapter1 != null)
         gvadapter1.notifyDataSetChanged();
