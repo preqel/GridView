@@ -26,6 +26,16 @@ import one.preqel.com.gridviewfavorite.DataManager;
  * 可以根据xml里面配置的菜单，
  * 来生产九宫格菜单。
  * 支持点击事件都是可以配置的。
+ * GridViewGallery是一个自定义的GrdView组件，
+ * 可以根据meus.xml里面配置的信息，来配置九宫格菜单
+ * 点击事件路由都是可以简单配置的。
+ * 如果想增加新的菜单，需要在menus.xml里面增加
+ * <menu>
+ * <name>转账</name>   //表示
+ * <title>caidan2</title>
+ * <img>grid_icon_add.png</img>
+ * </menu>
+ * 目前支持的最大菜单数量是24个
  * Created by wangkang on 2017/1/9.
  */
 public class GridViewGallery extends LinearLayout {
@@ -40,7 +50,7 @@ public class GridViewGallery extends LinearLayout {
 
     private int viewpagersize;
 
-    private final int pageitemcount = 8;
+    private final int pageitemcount = 8;   //每个gridiew里面有的菜单数
 
     private DataManager datamanager;
 
@@ -94,7 +104,6 @@ public class GridViewGallery extends LinearLayout {
 
                }
            });
-
     }
 
     //调用此方法在activity的oncreate里面
@@ -103,7 +112,6 @@ public class GridViewGallery extends LinearLayout {
         CustMenu custMenu = CustMenu.getInstance();
         custMenu.load();
         lists = (ArrayList) custMenu.getBizList();
-
         initView();
         if (gvadapter1 != null) {
             gvadapter1.notifyDataSetChanged();
@@ -119,12 +127,15 @@ public class GridViewGallery extends LinearLayout {
     public void initDate(List<Menu> menulist) {
         lists = menulist;
         initView();
-        if (gvadapter1 != null)
+        if (gvadapter1 != null) {
             gvadapter1.notifyDataSetChanged();
-        if (gvadapter2 != null)
+        }
+        if (gvadapter2 != null) {
             gvadapter2.notifyDataSetChanged();
-        if (gvadapter3 != null)
+        }
+        if (gvadapter3 != null) {
             gvadapter3.notifyDataSetChanged();
+        }
         //Log.d("TAG","after initdate num:"+ menulist.size());
     }
 
@@ -184,9 +195,10 @@ public class GridViewGallery extends LinearLayout {
 //                    Method m1 = re.getDeclaredMethod("regesterContext", Context.class);
 //                    m1.invoke(re.newInstance(),mcontext);
                     for (Method m : re.getMethods()) {
-                        if (m.getName().equals(menu.getUrl()))
                             try {
-                                m.invoke(re.newInstance(), mcontext);
+                                if (m.getName().equals(menu.getUrl())) {
+                                    m.invoke(re.newInstance(), mcontext);
+                                }
                             } catch (IllegalAccessException e) {
                                 e.printStackTrace();
                             } catch (InvocationTargetException e) {
