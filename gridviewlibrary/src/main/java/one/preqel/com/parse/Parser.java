@@ -10,6 +10,6 @@ import one.preqel.com.ui.Menu;
  * Created by wangkang on 2017/1/10.
  */
 public interface Parser {
-    public List<Menu> parse(InputStream in)throws  Exception;
+    public List<Menu> parse(InputStream in) throws  Exception;
 
 }

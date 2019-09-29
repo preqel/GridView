@@ -14,11 +14,15 @@ public class DataManager {
 
     private static final int TEST_DATE = 0;
     private static final int XML_DATE = 1;
-
-    private int TYPE  = XML_DATE;  //  如果是0 则表示测试 如果是 1 则表示xml获取
+    //  如果是0 则表示测试 如果是 1 则表示xml获取
+    private int TYPE  = XML_DATE;
     private static DataManager instance;
+
     private ArrayList<Menu>  menus = new ArrayList<Menu>();
 
+    private DataManager() {
+
+    }
 
     public static DataManager getInstance() {  //单例模型
         if (instance == null) {
@@ -27,11 +31,11 @@ public class DataManager {
         return instance;
     }
 
-    public DataManager() {
-    }
-
-
-    public ArrayList<Menu> getData()   {
+    /**
+     * 生成数据
+     * @return
+     */
+    public ArrayList<Menu> generateDate()   {
         if(TYPE == TEST_DATE) {
             menus.add(new Menu(1, "菜单1", "www.baidu.com"));
             menus.add(new Menu(21, "菜单2", "www.baidu.com2"));

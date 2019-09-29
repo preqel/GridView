@@ -22,17 +22,6 @@ import one.preqel.com.ui.Menu;
 
 public class CustMenu {
 
-    private static final String CUST_MENU_NAME = "file:///custmenu.xml";
-
-    private static final String TAG_MENU = "menu";
-
-    private static final String TAG_MENU_ATTR_MENUID = "menuid";
-
-    private static final String TAG_MENU_ATTR_VALUE = "value";
-
-    private static final String TAG_MENU_ATTR_IMG = "img";
-
-    private static final String TAG_MENU_ATTR_ONCLICK = "onclick";
 
     private Document mDocument;
 
@@ -46,15 +35,15 @@ public class CustMenu {
     public static final int REMIT_ID = 0002;
     public static final int SELF_PAYMENT = 0005;
     public static final int FOUND_MARKET_ID = 0006;
-    public static final int WESDK_ID = 22 ;
+    public static final int WESDK_ID = 22;
 
-    protected CustMenu(   ) {
-        this.mContext  = MyApplication.getApplication();
+    protected CustMenu() {
+        this.mContext = MyApplication.getApplication();
     }
 
-    public static CustMenu getInstance(   ){
+    public static CustMenu getInstance() {
         if (mCustMenu == null) {
-            mCustMenu = new CustMenu( );
+            mCustMenu = new CustMenu();
         }
         return mCustMenu;
     }
@@ -66,15 +55,14 @@ public class CustMenu {
     /**
      * 加载配置文件
      */
-    public void load() throws  Exception{
+    public void load() throws Exception {
         InputStream in = mContext.getResources().openRawResource(R.raw.menus);
         Parser saxparser = ParserFactory.getParser("pull");  //如果想用pullparser ，则传入 pull ； 如果用sax解析，则传入sax；也可以自定义解析器。
         List<Menu> menus = saxparser.parse(in);
         for (Menu a : menus) {
             Log.d("TAG", a.getName());
         }
-
-        this.bizList = menus;
+        this.bizList.addAll(menus);
     }
 
 //    /**

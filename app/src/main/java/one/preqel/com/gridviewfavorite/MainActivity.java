@@ -1,11 +1,8 @@
 package one.preqel.com.gridviewfavorite;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import java.io.InputStream;
 
 import gridview.preqel.com.gridviewlibrary.CustomUtil;
 import one.preqel.com.ui.GridViewGallery;
@@ -25,19 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Context context = MainActivity.this;
-       //InputStream inputStream = context.getResources().openRawResource(R.raw.menus);
         gridViewGallery = (GridViewGallery) findViewById(R.id.gridviewgallery);
-//            gridViewGallery.initDate(inputStream);
-        //test
-        InputStream inputStream2 = getResources().openRawResource(R.raw.menus);
-        try {
-            CustMenu.getInstance( ).load();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //gridViewGallery.initDate( CustMenu.getInstance(inputStream2).getBizList());
-        Log.d("TAG","preqel：" + CustomUtil.getMyHello());
+        gridViewGallery.setDateSource(new DefaultPullCustMenu());
+//        try {
+//            CustMenu.getInstance().load();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
