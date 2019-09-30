@@ -4,7 +4,7 @@
 可以左右滑动的九宫格控件，每次页面可以放置八个菜单，目前最大可支持3页内容，在xml里面配置就可以每个菜单的名称，图标和点击事件。
 # 如何引用
 在allprojects 里面 maven { url 'https://jitpack.io' }
-在项目的build.gradle里面增加 compile 'com.github.preqel:GridView:1.0.0' 的依赖
+在项目的build.gradle里面增加 compile 'com.github.preqel:GridView:1.1.1' 的依赖
 # 使用例子
 第一步，在布局文件增加raw文件夹，并在该文件夹下面简历menus.xml,试例代码如下：
 ```
