@@ -6,7 +6,7 @@
 在allprojects 里面 maven { url 'https://jitpack.io' }
 在项目的build.gradle里面增加 compile 'com.github.preqel:GridView:1.0.0' 的依赖
 # 使用例子
-在布局文件增加raw文件夹，并在该文件夹下面简历menus.xml,试例代码如下：
+第一步，在布局文件增加raw文件夹，并在该文件夹下面简历menus.xml,试例代码如下：
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <menus    xmlns:android="http://schemas.android.com/apk/res/android">    
@@ -50,9 +50,13 @@
 其中<name>表示菜单的id
   <title>表示菜单下方的标题显示文字
   <img>表示菜单的图标，本地文件的路径，非常简单！
+第二步，代码里面动态设置xml文件
+    
+     gridViewGallery = (GridViewGallery) findViewById(R.id.gridviewgallery);   //获得组件
+     gridViewGallery.setDateSource(new DefaultPullCustMenu(this,R.raw.menus));  //设置数据源
+     
+完毕。
 # 更新日志
 20170301初步编码
 
 20171001改造成library库，方便引用
-
-
