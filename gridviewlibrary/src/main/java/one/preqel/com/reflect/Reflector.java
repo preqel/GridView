@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import one.preqel.com.ui.Menu;
+
 
 /**
  * Created by wangkang on 2017/1/12.
@@ -45,6 +50,25 @@ public class Reflector {
 
     public void go(Context mContext)
     {
+//        Menu menu = datamanager.generateDate().get(position + currenindex * pageitemcount);
+//        try {
+//            Class<?> re = Class.forName("one.preqel.com.reflect.Reflector");
+//            for (Method m : re.getMethods()) {
+//                try {
+//                    if (m.getName().equals(menu.getUrl())) {
+//                        m.invoke(re.newInstance(), mcontext);
+//                    }
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                } catch (InvocationTargetException e) {
+//                    e.printStackTrace();
+//                } catch (InstantiationException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
 //        Intent i = new Intent(mContext, SecondActivity.class);
 //        ((Activity)mContext).startActivity(i);
     }

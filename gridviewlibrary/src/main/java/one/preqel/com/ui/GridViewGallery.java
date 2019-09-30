@@ -11,15 +11,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
 import gridview.preqel.com.gridviewlibrary.R;
 import one.preqel.com.gridviewfavorite.CustMenu;
 import one.preqel.com.gridviewfavorite.CustMenuInterface;
-import one.preqel.com.gridviewfavorite.DataManager;
 
 /**
  * GridViewGallery是一个九宫格菜单组件，
@@ -52,13 +51,14 @@ public class GridViewGallery extends LinearLayout {
 
     private final int pageitemcount = 8;   //每个gridiew里面有的菜单数
 
-    private DataManager datamanager;
-
     public GV_Itemadapter gvadapter1, gvadapter2, gvadapter3;
 
     private List<Menu> lists = new ArrayList<>();  //菜单
 
     private int currenindex;   //目前所选tab项
+
+    OnItemClickListener onItemClickListener;  //点击事件
+
 
     public GridViewGallery(Context context) {
         super(context);
@@ -75,35 +75,35 @@ public class GridViewGallery extends LinearLayout {
 
     public void initView() {
         View view = LayoutInflater.from(mcontext).inflate(R.layout.gallery_layout, null);
-        this.viewpager = (ViewPager)view. findViewById(R.id.viewpager);
+        this.viewpager = (ViewPager) view.findViewById(R.id.viewpager);
         addView(view);
     }
 
 
-    public  void setDateSource(CustMenuInterface custMenuInterface){
-            this.lists.addAll(custMenuInterface.load(getContext()));
-           this.viewpagersize= this.lists.size()/ pageitemcount + 1;
-           for(int i = 0 ;i<viewpagersize; i++){
-                GridView gridView = getViewPagerItem(i);
-                list_views.add(gridView);
-           }
-           viewpager.setAdapter(new GV_adapter(list_views));
-           viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-               @Override
-               public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    public void setDateSource(CustMenuInterface custMenuInterface) {
+        this.lists.addAll(custMenuInterface.load());
+        this.viewpagersize = this.lists.size() / pageitemcount + 1;
+        for (int i = 0; i < viewpagersize; i++) {
+            GridView gridView = getViewPagerItem(i);
+            list_views.add(gridView);
+        }
+        viewpager.setAdapter(new GV_adapter(list_views));
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-               }
+            }
 
-               @Override
-               public void onPageSelected(int position) {
-                   currenindex = position;
-               }
+            @Override
+            public void onPageSelected(int position) {
+                currenindex = position;
+            }
 
-               @Override
-               public void onPageScrollStateChanged(int state) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
-               }
-           });
+            }
+        });
     }
 
     //调用此方法在activity的oncreate里面
@@ -188,32 +188,21 @@ public class GridViewGallery extends LinearLayout {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Menu menu = datamanager.generateDate().get(position + currenindex * pageitemcount);
-//                Log.d("TAG", "pre:" + menu.getUrl() + "currentinde:" + currenindex);
-                try {
-                    Class<?> re = Class.forName("one.preqel.com.reflect.Reflector");
-//                    Method m1 = re.getDeclaredMethod("regesterContext", Context.class);
-//                    m1.invoke(re.newInstance(),mcontext);
-                    for (Method m : re.getMethods()) {
-                            try {
-                                if (m.getName().equals(menu.getUrl())) {
-                                    m.invoke(re.newInstance(), mcontext);
-                                }
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                            } catch (InstantiationException e) {
-                                e.printStackTrace();
-                            }
-                    }
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                if (onItemClickListener != null) {
+                    String url = lists.get(position).getUrl();
+                    onItemClickListener.onItemClick(parent, view, position, id, url);
                 }
             }
         });
         return gridview;
     }
 
-}
 
+    public interface OnItemClickListener {
+        void onItemClick(AdapterView<?> parent, View view, int position, long id, String url);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+}

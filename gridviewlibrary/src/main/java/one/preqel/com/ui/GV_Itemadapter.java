@@ -12,11 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import one.preqel.com.gridviewfavorite.DataManager;
 import gridview.preqel.com.gridviewlibrary.R;
-import one.preqel.com.ui.ImageUtil;
 
 /**
  * 适配器类
