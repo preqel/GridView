@@ -50,13 +50,24 @@
 其中<name>表示菜单的id
   <title>表示菜单下方的标题显示文字
   <img>表示菜单的图标，本地文件的路径，非常简单！
-第二步，代码里面动态设置xml文件
+    
+第二步，代码里面动态设置xml文件（重要）
     
      gridViewGallery = (GridViewGallery) findViewById(R.id.gridviewgallery);   //获得组件
      gridViewGallery.setDateSource(new DefaultPullCustMenu(this,R.raw.menus));  //设置数据源
      
+第三步，设置点击事件（非必须）
+     
+     gridViewGallery.setOnItemClickListener(new GridViewGallery.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id, String url) {
+                 //可以根据url标识去做相应的处理
+            }
+        });
 完毕。
+
 # 更新日志
+
 20170301初步编码
 
 20171001改造成library库，方便引用
